@@ -6,5 +6,11 @@ import com.acmeflix.transfer.resource.SubscriptionPlanResource;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface SubscriptionPlanMapper extends BaseMapper<SubscriptionPlan, SubscriptionPlanResource> {
+public interface SubscriptionPlanMapper extends
+    BaseMapper<SubscriptionPlan, SubscriptionPlanResource> {
+
+  SubscriptionPlanResource toResource(SubscriptionPlan subscriptionPlan);
+
+  SubscriptionPlan toDomain(SubscriptionPlanResource subscriptionPlanResource);
+
 }
