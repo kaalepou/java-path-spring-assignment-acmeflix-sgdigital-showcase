@@ -56,7 +56,7 @@ public abstract class BaseServiceImpl<T extends BaseModel> extends BaseComponent
 
 	@Override
 	public T get(final Long id) {
-		T item = getRepository().findById(id).orElseThrow();
+		T item = getRepository().findById(id).orElseThrow(() -> new IllegalArgumentException("No item found with id: "+ id));
 		logger.trace("Item found matching id:{}.", id);
 		return item;
 	}
