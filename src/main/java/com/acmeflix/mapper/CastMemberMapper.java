@@ -15,5 +15,8 @@ public interface CastMemberMapper extends BaseMapper<CastMember, CastMemberResou
 	CastMemberResource toResource(CastMember castMember);
 
 	@InheritInverseConfiguration
+	@Mapping(source = "contentTitle", target = "content.title")
+	@Mapping(target = "person.firstName", expression = "java(castMemberResource.getPersonName().split(\"\")[0])")
+	@Mapping(target = "person.lastName", expression = "java(castMemberResource.getPersonName().split(\"\")[1])")
 	CastMember toDomain(CastMemberResource castMemberResource);
 }
