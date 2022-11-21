@@ -47,7 +47,7 @@ public class Account extends BaseModel {
 	public Profile getProfile(String name) {
 		if (profiles.size() > 0) {
 			return profiles.stream().filter(profile -> name.equalsIgnoreCase(profile.getName())).findFirst()
-						   .orElseThrow();
+					.orElseThrow(() -> new IllegalArgumentException("No profiles were found with profile name: "+ name));
 		}
 		throw new NoSuchElementException("There are no profiles available!");
 	}
