@@ -67,10 +67,15 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
 		}
 
 		//var rating = Rating.builder().id(new RatingKey(profile.getId(), content.getId())).rate(rate).build();
-		var rating = Rating.builder().id(new RatingKey(profile.getId(), content.getId())).profile(profile).content(
+		Rating rating = Rating.builder().id(new RatingKey(profile.getId(), content.getId())).profile(profile).content(
 				content).rate(rate).build();
 		ratingRepository.save(rating);
 
 		logger.debug("Profile '{}' rated '{}' with {}.", profile.getName(), content.getTitle(), rate);
+	}
+
+	@Override
+	public Account findByEmail(String email) {
+		return accountRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("No account found for email: "+ email));
 	}
 }

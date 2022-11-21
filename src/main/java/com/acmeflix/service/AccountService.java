@@ -18,4 +18,6 @@ public interface AccountService extends BaseService<Account, Long> {
 	Account getFullContent(Long id);
 
 	void rate(final Profile profile, final Content content, final Double rate) throws ViewingRestrictionException;
+
+	Account findByEmail(String email);
 }
