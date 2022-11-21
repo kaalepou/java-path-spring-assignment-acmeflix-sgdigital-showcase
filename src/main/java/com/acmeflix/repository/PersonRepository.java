@@ -11,18 +11,11 @@ import java.util.List;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-	@Query("""
-			select distinct p
-			from Person p
-			left join fetch p.castMembers pcm""")
+	@Query("select distinct p from Person p left join fetch p.castMembers pcm")
 	@QueryHints(@QueryHint(name = org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH, value = "false"))
 	List<Person> getFullContent();
 
-	@Query("""
-			select distinct p
-			from Person p
-			left join fetch p.castMembers pcm
-			where p.id = :id""")
+	@Query("select distinct p from Person p left join fetch p.castMembers pcm where p.id = :id")
 	@QueryHints(@QueryHint(name = org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH, value = "false"))
 	Person getFullContent(Long id);
 

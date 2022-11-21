@@ -36,6 +36,6 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
 	@Override
 	public Person findByLastNameAndFirstName(final String lastName, final String firstName) {
 		return personRepository.findByLastNameIgnoreCaseAndFirstNameIgnoreCase(lastName, firstName).stream().findFirst()
-							   .orElseThrow();
+				.orElseThrow(null);
 	}
 }
